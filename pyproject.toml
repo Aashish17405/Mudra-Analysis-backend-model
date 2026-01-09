@@ -1,0 +1,18 @@
+[project]
+name = "nithya-analysis-ml-model"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "deepface>=0.0.79",
+    "matplotlib>=3.10.8",
+    "mediapipe>=0.10.9",
+    "numpy>=1.24.0",
+    "opencv-python>=4.8.0",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.8.0",
+    "tensorflow>=2.15.0",
+    "tf-keras>=2.18.0",
+    "tqdm>=4.67.1",
+]

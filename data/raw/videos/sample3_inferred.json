@@ -1,0 +1,32 @@
+[
+    {
+        "step": "Alarippu",
+        "start_frame": 29,
+        "end_frame": 45,
+        "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+    },
+    {
+        "step": "Jathiswaram",
+        "start_frame": 45,
+        "end_frame": 90,
+        "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+    },
+    {
+        "step": "Shabdam",
+        "start_frame": 90,
+        "end_frame": 135,
+        "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+    },
+    {
+        "step": "Varnam",
+        "start_frame": 135,
+        "end_frame": 180,
+        "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+    },
+    {
+        "step": "Padam",
+        "start_frame": 180,
+        "end_frame": 192,
+        "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+    }
+]

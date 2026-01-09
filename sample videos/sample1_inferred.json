@@ -1,0 +1,27 @@
+[
+    {
+        "step": "Alarippu",
+        "start_frame": 29,
+        "end_frame": 45
+    },
+    {
+        "step": "Jathiswaram",
+        "start_frame": 45,
+        "end_frame": 90
+    },
+    {
+        "step": "Shabdam",
+        "start_frame": 90,
+        "end_frame": 135
+    },
+    {
+        "step": "Varnam",
+        "start_frame": 135,
+        "end_frame": 180
+    },
+    {
+        "step": "Padam",
+        "start_frame": 180,
+        "end_frame": 192
+    }
+]
