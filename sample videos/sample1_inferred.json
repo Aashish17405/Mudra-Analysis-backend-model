@@ -1,0 +1,35 @@
+{
+    "video_path": "C:\\aashish programming files\\freelance\\nithya-analysis ml model\\sample videos\\sample1.mp4",
+    "total_frames": 192,
+    "fps": 24.0,
+    "dance_steps": [
+        {
+            "step": "Varnam",
+            "start_frame": 0,
+            "end_frame": 72,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 72,
+            "end_frame": 144,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 144,
+            "end_frame": 192,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        }
+    ],
+    "mudra_detections": [
+        {
+            "frame": 144,
+            "label": "Mudra_18",
+            "confidence": 1.0
+        }
+    ],
+    "mudra_summary": {
+        "Mudra_18": 1
+    }
+}

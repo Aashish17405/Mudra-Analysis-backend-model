@@ -1,0 +1,26 @@
+INIT: Mudra predictor initialized successfully: <src.mudra_predictor.MudraPredictor object at 0x00000265FE419550>
+EXTRACT: Generated 0 hand crops
+EXTRACT: Generated 0 hand crops
+EXTRACT: Found 1 hands
+EXTRACT: BBox 162:277, 94:186
+EXTRACT: Generated 1 hand crops
+ENTRY: hand_landmarks type: <class 'numpy.ndarray'>
+ENTRY: shape: (92, 115, 3)
+CHECK: ndim=3
+BRANCH: IF (Pre-cropped)
+PREDICTOR: Pre-cropped input detected (92, 115, 3)
+INIT: Mudra predictor initialized successfully: <src.mudra_predictor.MudraPredictor object at 0x000001D839059550>
+EXTRACT: Generated 0 hand crops
+EXTRACT: Generated 0 hand crops
+EXTRACT: Found 1 hands
+EXTRACT: BBox 162:277, 94:186
+EXTRACT: Generated 1 hand crops
+ENTRY: hand_landmarks type: <class 'numpy.ndarray'>
+ENTRY: shape: (92, 115, 3)
+CHECK: ndim=3
+BRANCH: IF (Pre-cropped)
+PREDICTOR: Pre-cropped input detected (92, 115, 3)
+INIT: Mudra predictor initialized successfully: <src.mudra_predictor.MudraPredictor object at 0x000001AA0E290050>
+EXTRACT: Generated 0 hand crops
+EXTRACT: Generated 0 hand crops
+EXTRACT: Generated 0 hand crops

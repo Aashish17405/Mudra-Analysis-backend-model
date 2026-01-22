@@ -54,6 +54,7 @@ FEATURES_EMOTION_DIM = 1 # Just the ID or probability vector? User said "emotion
 SEQUENCE_LENGTH = 30     # frames (approx 1 sec at 30fps)
 STRIDE = 10              # frames sliding window
 FPS_TARGET = 30          # Normalize videos to this FPS
+INFERENCE_INTERVAL_SECONDS = 3.0 # Process every 3 seconds for uniformity
 
 # Mudra Model Training Constants
 MUDRA_IMAGE_SIZE = (224, 224)

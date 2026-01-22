@@ -1,168 +1,145 @@
-# Mudra Analysis - Bharatanatyam ML Model
+# Nithya Analysis ML Model
 
-A deep learning pipeline for detecting and classifying Bharatanatyam dance mudras (hand gestures) from video using MediaPipe landmarks and EfficientNetB0.
+This repository contains the machine learning pipeline for analyzing Bharatanatyam dance performances. It accurately detects hand gestures (Mudras) and identifies complex dance sequences using computer vision and deep learning.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.10+
-- pip or uv package manager
+- Python 3.9 or 3.10 (Recommended for TensorFlow stability)
+- Git
 
-### 1. Clone the Repository
+### Installation
 
-```bash
-git clone https://github.com/Aashish17405/Mudra-Analysis-backend-model.git
-cd Mudra-Analysis-backend-model
-```
+1. **Clone the repository:**
 
-### 2. Install Dependencies
+   ```bash
+   git clone https://github.com/Aashish17405/Mudra-Analysis-backend-model.git
+   cd Mudra-Analysis-backend-model
+   ```
 
-```bash
-# Using pip
-pip install -r requirements.txt
+2. **Set up a virtual environment:**
 
-# OR using uv (recommended)
-uv sync
-```
+   ```bash
+   python -m venv venv
+   # On Windows:
+   .\venv\Scripts\activate
+   # On Linux/macOS:
+   source venv/bin/activate
+   ```
 
-### 3. Test the Model
+3. **Install dependencies:**
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
 
-Run inference on a sample video:
+## 🛠️ Usage
+
+### Running Inference
+
+To analyze a Bharatanatyam performance video and generate a mudra narrative:
 
 ```bash
 python main_pipeline.py --mode inference --video_path "sample videos/sample1.mp4"
 ```
 
-This will:
+**Arguments:**
 
-- Load the pre-trained model (`models/saved/mudra_cnn_model_kaggle_latest.h5`)
-- Process the video frame-by-frame
-- Detect mudras and dance steps
-- Save results to `sample1_inferred.json`
-- Generate a narrative story
+- `--mode inference`: Runs the full detection and narrative generation pipeline.
+- `--video_path`: Path to the input video file.
+- `--no_mudra`: (Optional) Flag to disable mudra detection.
 
----
+The results will be saved as:
 
-## 🎯 Training a New Model
+- `[video_name]_inferred.json`: Detailed detection temporal data.
+- `[video_name]_mudra_story.txt`: A plain-text narrative explaining the detected gestures.
 
-### Option 1: Train on Kaggle (Recommended)
+## 🏗️ System Architecture
 
-Upload `kaggle_train_script.py` to Kaggle with GPU enabled:
+The system operates on a dual-path architecture to analyze both static gestures and temporal dance steps simultaneously.
 
-1. Create a new Kaggle notebook
-2. Upload the script and dataset
-3. Run training (~2-3 hours with GPU)
-4. Download the trained model
+```mermaid
+graph TD
+    A[Input Video] --> B[Frame Extraction];
+    B --> C{MediaPipe Extraction};
 
-### Option 2: Train Locally
+    C -->|Hand Landmarks| D[Mudra Detection Pipeline];
+    C -->|Body Pose + Hands| E[Dance Step Pipeline];
 
-#### Step 1: Prepare Dataset
+    subgraph "Mudra Detection (Static)"
+    D --> D1[Crop Hand Region];
+    D1 --> D2[Pre-processing & Rescaling];
+    D2 --> D3[EfficientNetB0 CNN];
+    D3 --> D4[Mudra Label (e.g., 'Pataka')];
+    end
 
-Place mudra images in the following structure:
+    subgraph "Dance Step Detection (Temporal)"
+    E --> E1[Feature Concatenation];
+    E1 --> E2[Sliding Window Buffer];
+    E2 --> E3[Sequence Model (LSTM/GRU)];
+    E3 --> E4[Step Label (e.g., 'Natayarambham')];
+    end
 
-```
-data/mudras/kaggle_50_mudras/images/
-├── train/
-│   ├── Alapadmam/
-│   │   ├── image1.jpg
-│   │   └── ...
-│   ├── Anjali/
-│   └── ... (47 classes)
-└── val/
-    └── ... (same structure)
-```
-
-#### Step 2: Process Dataset
-
-```bash
-python main_pipeline.py --mode process_mudras
+    D4 --> F[Narrative Generator];
+    E4 --> F;
+    F --> G[Final JSON & Text Report];
 ```
 
-#### Step 3: Train Model
+## 📊 Dataset & Augmentation
 
-```bash
-python main_pipeline.py --mode train_mudra --model_type landmark
-```
+The model is trained on a curated dataset of Bharatanatyam imagery, processed to ensure robustness against lighting and orientation changes.
 
-**Training Parameters** (in `src/config.py`):
+### Dataset Structure
 
-- Image size: 224x224
-- Batch size: 32
-- Epochs: 100 (with early stopping)
-- Model: EfficientNetB0 with 47 output classes
+- **Raw Data**: Organized by class folders (`data/raw/mudras/<class_name>/`).
+- **Processing**: Images are resized and normalized before feature extraction.
+- **Landmarks**: 21 3D points per hand (126 features total) extracted using MediaPipe.
+- **Videos**: Annotated video segments for dynamic step training.
 
----
+### Data Augmentation
 
-## 📁 Project Structure
+To improve generalization and prevent overfitting, the training pipeline applies the following augmentations to the training set (3x multiplier):
 
-```
-├── main_pipeline.py          # Main entry point
-├── kaggle_train_script.py    # Kaggle training script
-├── src/
-│   ├── config.py             # Configuration constants
-│   ├── extraction.py         # MediaPipe landmark extraction
-│   ├── mudra_predictor.py    # Mudra prediction class
-│   ├── inference.py          # Video inference pipeline
-│   ├── train_mudra_model.py  # Model training logic
-│   ├── mudra_processor.py    # Data augmentation
-│   └── narrative.py          # Story generation
-├── models/saved/
-│   └── mudra_cnn_model_kaggle_latest.h5  # Pre-trained model
-├── data/
-│   ├── raw/mudras/           # Raw mudra images
-│   └── processed/            # Processed features
-├── sample videos/            # Test videos (mp4)
-└── classes.txt               # List of 47 mudra classes
-```
+1.  **Horizontal Flip**: Simulates mirrored performances.
+2.  **Rotation**: Random rotations of ±15 degrees to handle wrist variations.
+3.  **Brightness Adjustment**:
+    - **Brighter**: +20% HSV Value channel.
+    - **Darker**: -20% HSV Value channel.
 
----
+## 🧠 Algorithms & Models
 
-## 🎥 Inference Modes
+### 1. Mudra Classification (Hand Gestures)
 
-```bash
-# Full inference with mudra detection
-python main_pipeline.py --mode inference --video_path "path/to/video.mp4"
+- **Algorithm**: Convolutional Neural Network (CNN) based on **EfficientNetB0** (Transfer Learning).
+- **Input**: Pre-cropped 224x224 RGB images of the hand (extracted via MediaPipe bounding box).
+- **Training**:
+  - **Optimizer**: Adam with learning rate reduction on plateau.
+  - **Loss Function**: Sparse Categorical Crossentropy.
+  - **Metrics**: Accuracy, Top-3 Accuracy, Top-5 Accuracy.
+- **Robustness**: Handles "Unknown" mudras and filters low-confidence predictions.
 
-# Inference without mudra detection (faster)
-python main_pipeline.py --mode inference --video_path "path/to/video.mp4" --no_mudra
-```
+### 2. Dance Step Prediction (Sequences)
 
-**Output**: JSON file with:
+- **Algorithm**: Sequential Neural Network (LSTM/GRU).
+- **Input**: Time-series buffer of feature vectors (Hand Landmarks + Pose Landmarks + Emotion).
+- **Windowing**: Sliding window approach (e.g., 30 frames) to capture movement dynamics.
 
-- Dance step timeline
-- Mudra detections per frame
-- Mudra summary (count per class)
-- Generated narrative
+## 🚀 Training Pipeline
 
----
+The training process is automated via `src/train_mudra_model.py`:
 
-## 🔧 Configuration
+1.  **Load & Split**: Loads processed features (`.npy` files) and splits into Train/Val/Test (stratified).
+2.  **Model Construction**: Builds the EfficientNet model with custom classification head.
+3.  **Training Loop**: Trains with:
+    - **Early Stopping**: Prevents overfitting by stopping when validation loss plateaus.
+    - **Model Checkpointing**: Saves the best model weights.
+    - **TensorBoard**: Logs metrics for visualization.
+4.  **Evaluation**: Generates Classification Report (Precision/Recall/F1) and Confusion Matrix.
 
-Edit `src/config.py` to modify:
+## 📁 Key Files
 
-| Parameter                 | Default    | Description             |
-| ------------------------- | ---------- | ----------------------- |
-| `MUDRA_IMAGE_SIZE`        | (224, 224) | Input image dimensions  |
-| `BATCH_SIZE`              | 32         | Training batch size     |
-| `EPOCHS`                  | 100        | Max training epochs     |
-| `EARLY_STOPPING_PATIENCE` | 15         | Early stopping patience |
-| `SEQUENCE_LENGTH`         | 30         | Frames per sequence     |
-
----
-
-## 📊 Supported Mudras (47 Classes)
-
-The model recognizes 47 Bharatanatyam mudras including:
-
-- Alapadmam, Anjali, Aralam, Ardhachandran
-- Bramaram, Chakra, Garuda, Hamsapaksha
-- Katakamukha, Mayura, Mrigasirsha, Mushti
-- Nagabandha, Padmakosha, Pathaka, Shanka
-- And 31 more... (see `classes.txt` for full list)
-
----
-
-## 📝 License
-
-MIT License
+- `src/processing.py`: Augmentation logic and raw data processing.
+- `src/train_mudra_model.py`: Main training script for the CNN.
+- `src/mudra_predictor.py`: Inference engine handling model loading and prediction.
+- `src/inference.py`: Orchestrates the video analysis pipeline.

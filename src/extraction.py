@@ -80,7 +80,7 @@ class FeatureExtractor:
         results_dict = {}
         
         if not self.mp_available or self.hand_landmarker is None:
-            return np.zeros(126), np.zeros(99), {} # Dummy
+            return np.zeros(126), np.zeros(99), {}, [] # Dummy (4 items)
             
         # Convert to MP Image
         mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=image_rgb)
@@ -112,6 +112,40 @@ class FeatureExtractor:
 
         hand_vec = np.concatenate([left_hand.flatten(), right_hand.flatten()])
         
+        # --- Extract Hand Crops ---
+        hand_crops = []
+        if hand_result.hand_landmarks:
+            with open("debug_trace.log", "a") as f: f.write(f"EXTRACT: Found {len(hand_result.hand_landmarks)} hands\n")
+            h, w, c = image_rgb.shape
+            for landmarks in hand_result.hand_landmarks:
+                 x_vals = [lm.x for lm in landmarks]
+                 y_vals = [lm.y for lm in landmarks]
+                 min_x, max_x = min(x_vals), max(x_vals)
+                 min_y, max_y = min(y_vals), max(y_vals)
+                 
+                 padding_x = 0.05
+                 padding_y = 0.05
+                 min_x = max(0.0, min_x - padding_x)
+                 max_x = min(1.0, max_x + padding_x)
+                 min_y = max(0.0, min_y - padding_y)
+                 max_y = min(1.0, max_y + padding_y)
+                 
+                 x1 = int(min_x * w)
+                 y1 = int(min_y * h)
+                 x2 = int(max_x * w)
+                 y2 = int(max_y * h)
+                 
+                 with open("debug_trace.log", "a") as f: f.write(f"EXTRACT: BBox {x1}:{x2}, {y1}:{y2}\n")
+                 
+                 if x2 > x1 and y2 > y1:
+                     crop = image_rgb[y1:y2, x1:x2]
+                     crop_bgr = cv2.cvtColor(crop, cv2.COLOR_RGB2BGR)
+                     hand_crops.append(crop_bgr)
+                 else:
+                     with open("debug_trace.log", "a") as f: f.write(f"EXTRACT: Invalid BBox\n")
+        
+        with open("debug_trace.log", "a") as f: f.write(f"EXTRACT: Generated {len(hand_crops)} hand crops\n")
+
         # --- Process Pose ---
         pose_vec = np.zeros((33, 3))
         if self.pose_landmarker:
@@ -125,7 +159,7 @@ class FeatureExtractor:
         
         pose_vec = pose_vec.flatten()
         
-        return hand_vec, pose_vec, results_dict
+        return hand_vec, pose_vec, results_dict, hand_crops
 
     def extract_emotion(self, image_bgr):
         """

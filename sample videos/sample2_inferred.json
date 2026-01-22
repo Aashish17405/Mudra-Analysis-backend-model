@@ -1,0 +1,480 @@
+{
+    "video_path": "C:\\aashish programming files\\freelance\\nithya-analysis ml model\\sample videos\\sample2.mp4",
+    "total_frames": 192,
+    "fps": 24.0,
+    "dance_steps": [
+        {
+            "step": "Tillana",
+            "start_frame": 29,
+            "end_frame": 33,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 33,
+            "end_frame": 39,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 39,
+            "end_frame": 40,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 40,
+            "end_frame": 41,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 41,
+            "end_frame": 43,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 43,
+            "end_frame": 44,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 44,
+            "end_frame": 45,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 45,
+            "end_frame": 47,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 47,
+            "end_frame": 50,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 50,
+            "end_frame": 52,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 52,
+            "end_frame": 53,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 53,
+            "end_frame": 56,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 56,
+            "end_frame": 57,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 57,
+            "end_frame": 58,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 58,
+            "end_frame": 59,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 59,
+            "end_frame": 63,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 63,
+            "end_frame": 67,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 67,
+            "end_frame": 72,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 72,
+            "end_frame": 74,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 74,
+            "end_frame": 75,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 75,
+            "end_frame": 77,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 77,
+            "end_frame": 79,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 79,
+            "end_frame": 90,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 90,
+            "end_frame": 92,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 92,
+            "end_frame": 93,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 93,
+            "end_frame": 94,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 94,
+            "end_frame": 95,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 95,
+            "end_frame": 96,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 96,
+            "end_frame": 97,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 97,
+            "end_frame": 98,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 98,
+            "end_frame": 99,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 99,
+            "end_frame": 100,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 100,
+            "end_frame": 101,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 101,
+            "end_frame": 102,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 102,
+            "end_frame": 110,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 110,
+            "end_frame": 114,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 114,
+            "end_frame": 124,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 124,
+            "end_frame": 125,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 125,
+            "end_frame": 129,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 129,
+            "end_frame": 139,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 139,
+            "end_frame": 144,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 144,
+            "end_frame": 145,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 145,
+            "end_frame": 147,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 147,
+            "end_frame": 148,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 148,
+            "end_frame": 149,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 149,
+            "end_frame": 150,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 150,
+            "end_frame": 151,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 151,
+            "end_frame": 153,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 153,
+            "end_frame": 154,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 154,
+            "end_frame": 155,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 155,
+            "end_frame": 156,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 156,
+            "end_frame": 158,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 158,
+            "end_frame": 159,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 159,
+            "end_frame": 161,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 161,
+            "end_frame": 163,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 163,
+            "end_frame": 164,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 164,
+            "end_frame": 165,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 165,
+            "end_frame": 166,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 166,
+            "end_frame": 167,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 167,
+            "end_frame": 168,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 168,
+            "end_frame": 169,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 169,
+            "end_frame": 172,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 172,
+            "end_frame": 173,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 173,
+            "end_frame": 174,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 174,
+            "end_frame": 177,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 177,
+            "end_frame": 178,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 178,
+            "end_frame": 183,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        },
+        {
+            "step": "Varnam",
+            "start_frame": 183,
+            "end_frame": 185,
+            "meaning": "the centerpiece of the recital, effectively combining pure dance (Nritta) and expressive storytelling (Nritya) to explore complex emotional themes and devotion."
+        },
+        {
+            "step": "Shabdam",
+            "start_frame": 185,
+            "end_frame": 186,
+            "meaning": "an interpretive dance (Abhinaya) where the dancer introduces expressions and simple storytelling, typically praising a deity or king."
+        },
+        {
+            "step": "Jathiswaram",
+            "start_frame": 186,
+            "end_frame": 188,
+            "meaning": "a pure dance sequence (Nritta) focusing on technical brilliance, complex footwork, and rhythm, without any specific interpretive meaning."
+        },
+        {
+            "step": "Alarippu",
+            "start_frame": 188,
+            "end_frame": 190,
+            "meaning": "an invocation piece that symbolizes the blossoming of the dancer's body and mind, offering respects to God, the teacher, and the audience."
+        },
+        {
+            "step": "Tillana",
+            "start_frame": 190,
+            "end_frame": 191,
+            "meaning": "a fast-paced, rhythmic conclusion to the recital, characterized by intricate footwork and statuesque poses, celebrating joy and dynamism."
+        },
+        {
+            "step": "Padam",
+            "start_frame": 191,
+            "end_frame": 192,
+            "meaning": "a deeply emotional and expressive piece (Nritya), focusing on slow tempo and subtle facial expressions to depict themes of love, longing, or devotion."
+        }
+    ],
+    "mudra_detections": [
+        {
+            "frame": 10,
+            "mudra": "Trishulam",
+            "confidence": 0.5718202590942383
+        },
+        {
+            "frame": 11,
+            "mudra": "Trishulam",
+            "confidence": 0.5718202590942383
+        },
+        {
+            "frame": 14,
+            "mudra": "Trishulam",
+            "confidence": 0.5519980788230896
+        },
+        {
+            "frame": 15,
+            "mudra": "Trishulam",
+            "confidence": 0.5519980788230896
+        },
+        {
+            "frame": 26,
+            "mudra": "Trishulam",
+            "confidence": 0.5438337922096252
+        },
+        {
+            "frame": 27,
+            "mudra": "Trishulam",
+            "confidence": 0.5438337922096252
+        }
+    ],
+    "mudra_summary": {
+        "Trishulam": 6
+    }
+}

@@ -80,39 +80,33 @@ def main():
             # Run inference with mudra detection
             output = run_inference(abs_video_path, output_json, use_mudra_model=not args.no_mudra)
             
-            # Generate story from dance steps
-            story = generate_storyline(output.get('dance_steps', []))
-            
-            # Generate mudra narrative
+            # Generate mudra-focused narrative
             mudra_narrative = ""
             if output.get('mudra_detections'):
                 from src.mudra_meanings import generate_mudra_narrative
                 mudra_narrative = generate_mudra_narrative(output['mudra_detections'])
             
-            # Print narratives
+            # Print narrative
             print("\n" + "="*60)
-            print("GENERATED DANCE NARRATIVE")
+            print("MUDRA DETECTION NARRATIVE")
             print("="*60)
-            print(story)
             if mudra_narrative:
-                print("\n" + "="*60)
-                print("MUDRA ANALYSIS")
-                print("="*60)
                 print(mudra_narrative)
+            else:
+                print("No mudras were detected in this performance.")
             print("="*60 + "\n")
             
-            # Save combined story
-            output_story = f"{os.path.basename(base_name)}_story.txt"
-            logger.info(f"Saving story to: {output_story}")
+            # Save mudra narrative
+            output_story = f"{os.path.basename(base_name)}_mudra_story.txt"
+            logger.info(f"Saving mudra narrative to: {output_story}")
             with open(output_story, 'w') as f:
-                f.write("DANCE NARRATIVE\n")
+                f.write("MUDRA DETECTION NARRATIVE\n")
                 f.write("="*60 + "\n")
-                f.write(story)
                 if mudra_narrative:
-                    f.write("\n\nMUDRA ANALYSIS\n")
-                    f.write("="*60 + "\n")
                     f.write(mudra_narrative)
-            logger.info(f"Story saved to {output_story}")
+                else:
+                    f.write("No mudras were detected in this performance.")
+            logger.info(f"Narrative saved to {output_story}")
             
         if args.mode in ['mudra', 'all']:
             logger.info("Initializing Extractor for Images...")

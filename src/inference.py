@@ -30,9 +30,11 @@ class StepPredictor:
         if use_mudra_model and MUDRA_PREDICTOR_AVAILABLE:
             try:
                 self.mudra_predictor = MudraPredictor(model_type=model_type, extractor=extractor)
+                with open("debug_trace.log", "a") as f: f.write(f"INIT: Mudra predictor initialized successfully: {self.mudra_predictor}\n")
                 logger.info("Mudra predictor initialized successfully")
             except Exception as e:
                 logger.warning(f"Could not initialize mudra predictor: {e}")
+                with open("debug_trace.log", "a") as f: f.write(f"INIT: Could not initialize mudra predictor: {e}\n")
                 self.mudra_predictor = None
 
     def predict_sequence(self, feature_sequence, frame_idx=0):
@@ -106,10 +108,13 @@ def run_inference(video_path, output_json_path, use_mudra_model=True):
     window_size = config.SEQUENCE_LENGTH
     
     # Optimization: processing every N frames
-    FRAME_SKIP = 5 
+    FRAME_SKIP = 2  # Reduced from 5 to capture rapid mudra transitions 
     
     # Use deque for rolling buffer with fixed size to prevent memory leaks
     feature_buffer = deque(maxlen=window_size)
+    
+    interval_frames = int(fps * config.INFERENCE_INTERVAL_SECONDS)
+    logger.info(f"Processing interval: {config.INFERENCE_INTERVAL_SECONDS}s (~{interval_frames} frames)")
     
     current_step = None
     start_frame = 0
@@ -130,75 +135,66 @@ def run_inference(video_path, output_json_path, use_mudra_model=True):
         last_features_vec = None 
         last_mudra_result = None 
         
-        # Process frame by frame
-        for frame_idx in tqdm(range(total_frames), desc="Inference"):
+        # Process frame by frame with jump logic
+        frame_idx = 0
+        while frame_idx < total_frames:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
             ret, frame = cap.read()
             if not ret:
                 break
                 
-            # --- Optimization: Frame Skipping ---
-            # Process only every FRAME_SKIP frames, or if it's the first frame
-            should_process = (frame_idx % FRAME_SKIP == 0)
+            # --- Uniform Interval Processing ---
+            image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             
-            # Re-extract features only on processing frames (or first frame)
-            if should_process or last_features_vec is None:
-                image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                
-                # 1. Extract
-                hand, pose, _ = extractor.extract_landmarks(image_rgb)
-                emotion = extractor.extract_emotion(frame)
-                
-                # Store full features
-                feature_vec = np.concatenate([hand, pose, [emotion]])
-                
-                # 2. Detect mudra (if enabled)
-                mudra_result = None
-                if predictor.mudra_predictor is not None:
-                    try:
-                        mudra_result = predictor.predict_mudra(hand, frame)
-                    except Exception as e:
-                        # Don't crash loop on single frame error
-                        logger.warning(f"Frame {frame_idx} prediction error: {e}")
-                
-                # Update state
-                last_features_vec = feature_vec
-                last_mudra_result = mudra_result
-            else:
-                # Reuse last valid features and prediction (Holding logic)
-                pass
+            # 1. Extract
+            hand, pose, _, hand_crops = extractor.extract_landmarks(image_rgb)
+            emotion = extractor.extract_emotion(frame)
             
-            # Use current valid data (fresh or held)
-            if last_features_vec is not None:
-                feature_buffer.append(last_features_vec)
-                
-            if last_mudra_result:
-                mudra_name, confidence = last_mudra_result
-                mudra_detections.append({
-                    'frame': frame_idx,
-                    'mudra': mudra_name,
-                    'confidence': float(confidence)
-                })
+            # Store full features
+            feature_vec = np.concatenate([hand, pose, [emotion]])
+            feature_buffer.append(feature_vec)
             
-            # 3. Predict dance step if window full
-            if len(feature_buffer) == window_size:
-                # Convert deque to array for model
-                window = np.array(feature_buffer)
-                
-                # Predict dance step
-                pred_label = predictor.predict_sequence(window, frame_idx)
-                
-                # 4. Aggregate into timeline
-                if pred_label != current_step:
-                    if current_step is not None:
-                        predictions.append({
-                            "step": current_step,
-                            "start_frame": start_frame,
-                            "end_frame": frame_idx,
-                            "meaning": STEP_MEANINGS.get(current_step, "A traditional dance step.")
-                        })
+            # 2. Detect mudra (if enabled)
+            if predictor.mudra_predictor is not None and hand_crops:
+                try:
+                    mudra_result = predictor.predict_mudra(hand_crops[0], frame)
                     
-                    current_step = pred_label
-                    start_frame = frame_idx
+                    # Handle tuple (name, conf) or list of tuples [(name, conf), ...]
+                    mudra_name, confidence = None, 0.0
+                    if isinstance(mudra_result, list) and len(mudra_result) > 0:
+                         mudra_name, confidence = mudra_result[0]
+                    elif isinstance(mudra_result, tuple):
+                         mudra_name, confidence = mudra_result
+                    
+                    if mudra_name and confidence > 0.0:
+                        mudra_detections.append({
+                            'frame': frame_idx,
+                            "label": mudra_name,
+                            "confidence": float(confidence)
+                        })
+                except Exception as e:
+                    logger.warning(f"Frame {frame_idx} mudra prediction error: {e}")
+
+            # 3. Predict dance step 
+            window = np.array(list(feature_buffer))
+            if len(window) < window_size:
+                # Pad if necessary for the first sample
+                padding = np.zeros((window_size - len(window), window.shape[1]))
+                window = np.vstack([padding, window])
+            
+            pred_label = predictor.predict_sequence(window, frame_idx)
+            
+            # 4. Aggregate into uniform timeline
+            next_frame_idx = min(frame_idx + interval_frames, total_frames)
+            predictions.append({
+                "step": pred_label,
+                "start_frame": frame_idx,
+                "end_frame": next_frame_idx,
+                "meaning": STEP_MEANINGS.get(pred_label, "A traditional dance step.")
+            })
+            
+            # Move to next interval
+            frame_idx = next_frame_idx
             
     except KeyboardInterrupt:
         logger.warning("Interrupted by user.")
@@ -234,7 +230,7 @@ def run_inference(video_path, output_json_path, use_mudra_model=True):
     # Create mudra summary
     if mudra_detections:
         from collections import Counter
-        mudra_counts = Counter([m['mudra'] for m in mudra_detections])
+        mudra_counts = Counter([m['label'] for m in mudra_detections])
         output['mudra_summary'] = dict(mudra_counts.most_common(10))
     
     # 5. Save
