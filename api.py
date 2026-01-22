@@ -28,6 +28,11 @@ app = FastAPI(
 UPLOAD_DIR = Path("data/temp/uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
+@app.get("/")
+async def root():
+    """Root endpoint for health checks."""
+    return {"status": "online", "message": "Mudra Analysis API is active.", "docs": "/docs"}
+
 @app.get("/status")
 async def get_status():
     """Check the health of the API."""
@@ -80,4 +85,6 @@ async def analyze_video(file: UploadFile = File(...), use_mudra: bool = True):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Respect PORT env var for Render deployment
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

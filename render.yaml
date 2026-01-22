@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mudra-analysis-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: TF_ENABLE_ONEDNN_OPTS
+        value: "0"
+      - key: CUDA_VISIBLE_DEVICES
+        value: "-1"
+    # Plan suggestion: ML models usually need at least 2GB RAM
+    # Free tier might crash with TensorFlow + DeepFace
+    plan: starter
