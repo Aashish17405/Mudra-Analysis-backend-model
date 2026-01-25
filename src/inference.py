@@ -125,9 +125,6 @@ def run_inference(video_path, output_json_path, use_mudra_model=True, predictor=
     # Mudra tracking
     mudra_detections = []  # Store mudra per frame
     
-    predictor = None
-    extractor = None
-    
     try:
         # Initialize Predictor/Extractor if not provided (singleton support)
         if predictor is None:
